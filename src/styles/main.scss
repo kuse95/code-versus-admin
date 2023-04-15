@@ -1,0 +1,72 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #f8f8f8;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dddddd;
+  background-clip: padding-box;
+  min-height: 28px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb;
+}
+
+:root {
+  --el-font-weight-primary: 400;
+}
+
+.search-bar {
+  padding: 24px 24px 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.table-wrap {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 2px;
+  .table-actions {
+    margin-bottom: 12px;
+    display: flex;
+  }
+  .table-pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.el-pagination {
+  padding: 20px 0;
+}
+
+.el-form--inline {
+  .el-form-item {
+    .el-input-number {
+      width: 195px;
+    }
+    .el-input {
+      width: 195px;
+    }
+  }
+}
+
+.el-dialog{
+    min-width: 350px;
+    .el-dialog__footer{
+        text-align: center;
+    }
+}
