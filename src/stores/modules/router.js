@@ -44,6 +44,7 @@ export const useRouterStore = defineStore('router', () => {
     let resource = [].concat(
       {
         path: '/',
+        name: 'Entrance',
         children: [
           {
             name: 'Dashboard',
@@ -57,7 +58,7 @@ export const useRouterStore = defineStore('router', () => {
           }
         ]
       },
-      result
+      result || []
     )
     const routes = parseResource(resource)
     replaceRouteComponent(routes)

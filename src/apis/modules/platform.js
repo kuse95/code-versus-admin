@@ -9,8 +9,8 @@ function update() {
 function invalid(id) {
   return http.post(`/platform/invalid/${id}`)
 }
-function list() {
-  return http.post(`/platform/findByPage`)
+function list(query) {
+  return http.post(`/platform/findByPage`, query)
 }
 function create() {
   return http.post(`/platform/createPlatform`)

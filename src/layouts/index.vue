@@ -23,12 +23,22 @@
             </el-col>
             <el-col :xs="12" :lg="9" :md="9" :sm="14" :xl="9">
               <div class="right-box">
+                <div class="action-bar">
+                  <div class="action">
+                    <ScreenFull />
+                  </div>
+                  <div class="action" @click="showPlatformPicker = true">
+                    <el-tooltip content="切换平台">
+                      <el-icon><Monitor /></el-icon>
+                    </el-tooltip>
+                  </div>
+                </div>
                 <Dropdown />
               </div>
             </el-col>
           </el-row>
         </el-header>
-        <historyTagBar />
+        <HistoryTagBar />
       </div>
       <router-view
         v-if="reloadFlag"
@@ -46,12 +56,15 @@
         </div>
       </router-view>
     </el-main>
+    <PlatformPicker v-model="showPlatformPicker"/>
   </el-container>
 </template>
 <script setup>
 import Aside from './aside/index.vue'
-import Dropdown from "./dropdown/index.vue"
-import historyTagBar from "./historyTagBar/index.vue"
+import ScreenFull from './screenFull/index.vue'
+import Dropdown from './dropdown/index.vue'
+import HistoryTagBar from './historyTagBar/index.vue'
+import PlatformPicker from "@/components/platform-picker-dialog/index.vue"
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useEmitter } from '@/hooks/useEmitter.js'
@@ -62,6 +75,7 @@ const emitter = useEmitter()
 const isCollapse = ref(false)
 const reloadFlag = ref(true)
 const loadingFlag = ref(false)
+const showPlatformPicker = ref(false)
 
 onMounted(() => {
   emitter.emit('collapse', isCollapse.value)
@@ -119,5 +133,19 @@ const totalCollapse = () => {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+.action-bar {
+  display: inline-flex;
+  overflow: hidden;
+  text-align: center;
+  line-height: 0;
+  & > * {
+    margin-right: 24px;
+  }
+  .action {
+    cursor: pointer;
+    margin-right: 24px;
+    color: rgba($color: #000000, $alpha: 0.65);
+  }
 }
 </style>

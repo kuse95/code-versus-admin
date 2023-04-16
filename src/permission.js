@@ -12,12 +12,17 @@ router.beforeEach(async (to, from) => {
   document.title = to.meta.title || '菜鸟的春天'
   const token = userStore.token
   const platformId = routerStore.platformId
+
+  async function initUserInfo() {
+    await userStore.getUserInfo()
+    await userStore.getUserPlatforms()
+    await routerStore.setAsyncRouter()
+  }
   // 页面在白名单中
   if (whiteList.indexOf(to.name) > -1) {
     if (token && platformId) {
       if (!routerStore.asyncRouterFlag && whiteList.indexOf(from.name) < 0) {
-        await userStore.getUserInfo()
-        await routerStore.setAsyncRouter()
+        await initUserInfo()
       }
       return { name: 'Dashboard' }
     } else {
@@ -26,8 +31,7 @@ router.beforeEach(async (to, from) => {
   } else {
     if (token && platformId) {
       if (!to.matched.length || !routerStore.asyncRouterFlag) {
-        await userStore.getUserInfo()
-        await routerStore.setAsyncRouter()
+        await initUserInfo()
         return { ...to, replace: true }
       }
       if (to.matched.length) {

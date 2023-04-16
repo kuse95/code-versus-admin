@@ -11,7 +11,9 @@ function dynamicImport(dynamicViewsModules, component) {
   return dynamicViewsModules[matchKey]
 }
 
+let routeCount = 0
 export function replaceRouteComponent(asyncRoutes) {
+  routeCount = 0
   asyncRoutes?.forEach((element) => {
     if (element.component) {
       element.component = dynamicImport(pageModules, element.component)
@@ -20,8 +22,12 @@ export function replaceRouteComponent(asyncRoutes) {
     } else {
       delete element['component']
     }
+    if (!element?.name) {
+      element.name = `route-${routeCount}`
+    }
     if (element.children?.length) {
       replaceRouteComponent(element.children)
     }
+    routeCount++
   })
 }

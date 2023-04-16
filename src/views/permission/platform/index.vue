@@ -40,8 +40,18 @@
 import apis from '@/apis/modules/platform'
 import { useTableList } from '@/hooks/useTableList'
 
-const { page, pageSize, total, loading, list, onSearch, onReset, onPageChange, onPageSizeChange } =
-  useTableList(apis)
+const {
+  page,
+  pageSize,
+  total,
+  loading,
+  list,
+  searchInfo,
+  onSearch,
+  onReset,
+  onPageChange,
+  onPageSizeChange
+} = useTableList(apis)
 
 async function init() {}
 init()
