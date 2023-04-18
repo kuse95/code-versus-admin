@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import { writeFileSync } from 'fs'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -47,8 +47,8 @@ export default ({ mode }) => {
     },
     server: {
       proxy: {
-        '^/api': {
-          target: env.VITE_BASE_API,
+        [`^/api`]: {
+          target: 'http://api.geekhalo.com/api/perm/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }

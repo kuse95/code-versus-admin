@@ -6,7 +6,7 @@ import { useRouterStore } from '@/stores/modules/router.js'
 
 const service = axios.create({
   timeout: 15000,
-  baseURL: '/api'
+  baseURL: import.meta.env.VITE_BASE_API
 })
 
 let activeAxios = 0
